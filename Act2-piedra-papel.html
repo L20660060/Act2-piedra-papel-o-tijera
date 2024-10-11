@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piedra, Papel o Tijera</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        h2 {
+            color: #333;
+        }
+        #resultados {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Piedra, Papel o Tijera</h1>
+    <h2>Elige tu opción:</h2>
+
+    <button onclick="jugar('piedra')">Piedra</button>
+    <button onclick="jugar('papel')">Papel</button>
+    <button onclick="jugar('tijera')">Tijera</button>
+
+    <div id="resultados">
+        <h2 id="resultado"></h2>
+    </div>
+
+    <script>
+        function jugar(eleccionUsuario) {
+            const opciones = ['piedra', 'papel', 'tijera'];
+            const eleccionComputadora = opciones[Math.floor(Math.random() * 3)];
+
+            let resultado = '';
+            if (eleccionUsuario === eleccionComputadora) {
+                resultado = 'Empate';
+            } else if (
+                (eleccionUsuario === 'piedra' && eleccionComputadora === 'tijera') ||
+                (eleccionUsuario === 'papel' && eleccionComputadora === 'piedra') ||
+                (eleccionUsuario === 'tijera' && eleccionComputadora === 'papel')
+            ) {
+                resultado = '¡Ganaste! La computadora eligió ' + eleccionComputadora;
+            } else {
+                resultado = 'Perdiste... La computadora eligió ' + eleccionComputadora;
+            }
+
+            document.getElementById('resultado').textContent = resultado;
+        }
+    </script>
+</body>
+</html>
+
